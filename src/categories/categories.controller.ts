@@ -28,7 +28,7 @@ export class CategoryController {
     summary: 'category by id',
   })
   @ApiResponse({ status: 200, type: Category })
-  @Get()
+  @Get('/:categoryId')
   @ApiParam({ name: 'categoryId' })
   getProduct(@Param() param: { id: string }): any {
     return this.categoryService.getCategooryById(param.id);
@@ -38,7 +38,7 @@ export class CategoryController {
     summary: 'delete category',
   })
   @ApiResponse({ status: 204 })
-  @Delete()
+  @Delete('/:id')
   @ApiParam({ name: 'id' })
   deleteProduct(@Param() param: { id: string }): any {
     return this.categoryService.deleteCategory(param.id);
@@ -48,7 +48,7 @@ export class CategoryController {
     summary: 'update product',
   })
   @ApiResponse({ status: 204 })
-  @Patch()
+  @Patch('/:id')
   @ApiParam({ name: 'id' })
   updaateProduct(
     @Param() param: { id: string },

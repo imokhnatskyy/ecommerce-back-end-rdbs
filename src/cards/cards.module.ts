@@ -8,6 +8,5 @@ import { CardsService } from './cards.service';
   controllers: [CardsController],
   providers: [CardsService],
   imports: [SequelizeModule.forFeature([Card])],
-  exports: [CardsService],
 })
 export class CardsModule {}

@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Category } from 'src/categories/categories.model';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './products.model';
 
@@ -24,6 +25,12 @@ export class ProductsService {
     return await this.productRepository.create(dto);
   }
 
+  async getProducts() {
+    const product = await Product.findAll({
+      include: Category,
+    });
+    return product;
+  }
   async getCategoryProducts(id: string) {
     const categoryId = Number(id);
     const product = await Product.findAll({

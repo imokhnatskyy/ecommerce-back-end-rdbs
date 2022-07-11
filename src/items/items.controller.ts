@@ -20,7 +20,7 @@ export class ItemController {
     summary: 'Item by id',
   })
   @ApiResponse({ status: 200, type: Item })
-  @Get()
+  @Get('/:id')
   @ApiParam({ name: 'id' })
   getProduct(@Param() param: { id: string }): any {
     return this.itemService.getItemById(param.id);
@@ -30,7 +30,7 @@ export class ItemController {
     summary: 'delete item',
   })
   @ApiResponse({ status: 204 })
-  @Delete()
+  @Delete('/:id')
   @ApiParam({ name: 'id' })
   deleteProduct(@Param() param: { id: string }): any {
     return this.itemService.deleteProduct(param.id);

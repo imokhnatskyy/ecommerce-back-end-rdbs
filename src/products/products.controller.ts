@@ -28,8 +28,8 @@ export class ProductController {
     summary: 'Product list by category',
   })
   @ApiResponse({ status: 200, type: [Product] })
-  @Get('/category/')
-  @ApiParam({ name: 'categoryId' })
+  @Get('/category/:id')
+  @ApiParam({ name: 'id' })
   getCategoryProduct(@Param() param: { id: string }): any {
     return this.productService.getCategoryProducts(param.id);
   }
@@ -38,17 +38,26 @@ export class ProductController {
     summary: 'Product by id',
   })
   @ApiResponse({ status: 200, type: Product })
-  @Get()
+  @Get('/:id')
   @ApiParam({ name: 'id' })
   getProduct(@Param() param: { id: string }): any {
     return this.productService.getProductById(param.id);
   }
 
   @ApiOperation({
+    summary: 'Products list',
+  })
+  @ApiResponse({ status: 200, type: [Product] })
+  @Get('/list')
+  getProductList(): any {
+    return this.productService.getProducts();
+  }
+
+  @ApiOperation({
     summary: 'delete product',
   })
   @ApiResponse({ status: 204 })
-  @Delete()
+  @Delete('/:id')
   @ApiParam({ name: 'id' })
   deleteProduct(@Param() param: { id: string }): any {
     return this.productService.deleteProduct(param.id);
@@ -58,7 +67,7 @@ export class ProductController {
     summary: 'update product',
   })
   @ApiResponse({ status: 204 })
-  @Patch()
+  @Patch('/:id')
   @ApiParam({ name: 'id' })
   updaateProduct(
     @Param() param: { id: string },

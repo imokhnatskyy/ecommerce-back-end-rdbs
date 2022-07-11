@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Category } from 'src/categories/categories.model';
-import { Item } from 'src/items/items.model';
 import { Product } from 'src/products/products.model';
 import { Card } from './cards.model';
 import { CreateCardDto } from './dto/create-card.dto';
@@ -17,17 +16,22 @@ export class CardsService {
   }
 
   async getCardById(id: string) {
-    const cardId = Number(id);
-    const card = await Item.findAll({
-      where: { cardId },
+    const userId = Number(id);
+
+    const card = await Card.findAll({
+      where: { userId },
+      attributes: ['id'],
       include: [
         {
           model: Product,
-          include: [{ model: Category }],
+          // attributes: ['id'],
+          include: [Category],
         },
       ],
     });
-    console.log('Card: ', card);
+    console.log('Card: #########################');
+    console.log('Card: ', userId);
+    console.log('Id: ', card);
     return card;
   }
 }

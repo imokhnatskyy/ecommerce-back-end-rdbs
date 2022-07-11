@@ -9,12 +9,12 @@ export class CardsController {
   constructor(private cardService: CardsService) {}
 
   @ApiOperation({
-    summary: 'Card by id',
+    summary: 'Card by user id',
   })
   @ApiResponse({ status: 200, type: Card })
-  @Get()
   @ApiParam({ name: 'id' })
-  getProduct(@Param() param: { id: string }): any {
+  @Get('/:id')
+  getCard(@Param() param: { id: string }): any {
     return this.cardService.getCardById(param.id);
   }
 }
