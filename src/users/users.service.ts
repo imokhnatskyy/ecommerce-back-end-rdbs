@@ -46,7 +46,6 @@ export class UsersService {
       include: { model: Card, attributes: ['id'] },
     });
     return user;
-    // return { id: user.id, email: user.email, cardId: user.card };
   }
 
   async setPassword(email: string, newPassword: string): Promise<User> {
