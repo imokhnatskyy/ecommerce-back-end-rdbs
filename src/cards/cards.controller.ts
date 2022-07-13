@@ -17,4 +17,14 @@ export class CardsController {
   getCard(@Param() param: { id: string }): any {
     return this.cardService.getCardById(param.id);
   }
+
+  @ApiOperation({
+    summary: 'Clean Card by card id',
+  })
+  @ApiResponse({ status: 200, type: Card })
+  @ApiParam({ name: 'id' })
+  @Get('/clean/:id')
+  cleanCard(@Param() param: { id: string }): any {
+    return this.cardService.cleanCard(param.id);
+  }
 }
