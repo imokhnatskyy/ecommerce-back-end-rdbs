@@ -5,8 +5,8 @@ export class CreateItemDto {
   readonly quantity: number;
 
   @ApiProperty({ example: 10, description: 'card id' })
-  readonly cardId: number;
+  readonly card_id: number;
 
   @ApiProperty({ example: 10, description: 'product id' })
-  readonly productId: number;
+  readonly product_id: number;
 }

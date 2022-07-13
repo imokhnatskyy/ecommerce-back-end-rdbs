@@ -21,12 +21,15 @@ export class UsersService {
     const user = await this.userRepository.create(dto);
 
     delete user.password;
-    await Card.create({ userId: user.id });
+    await Card.create({ user_id: user.id });
+    delete user.password;
     return user;
   }
 
   async getUsers() {
-    const users = await this.userRepository.findAll();
+    const users = await this.userRepository.findAll({
+      attributes: ['id', 'email'],
+    });
     return users;
   }
 

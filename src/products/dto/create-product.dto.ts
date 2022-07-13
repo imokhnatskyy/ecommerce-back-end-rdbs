@@ -8,8 +8,8 @@ export class CreateProductDto {
   readonly price: number;
 
   @ApiProperty({ example: 10, description: 'available product in store' })
-  readonly store: number;
+  readonly stock: number;
 
   @ApiProperty({ example: 1, description: 'id of category' })
-  readonly categoryId: number;
+  readonly category_id: number;
 }

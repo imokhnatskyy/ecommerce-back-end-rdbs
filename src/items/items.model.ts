@@ -10,8 +10,8 @@ import { Product } from '../products/products.model';
 
 interface ItemCreationAttrs {
   quantity: number;
-  cardId: number;
-  productId: number;
+  card_id: number;
+  product_id: number;
 }
 
 @Table({ tableName: 'items', createdAt: false, updatedAt: false })
@@ -31,9 +31,9 @@ export class Item extends Model<Item, ItemCreationAttrs> {
 
   @ForeignKey(() => Card)
   @Column({ type: DataType.INTEGER, onDelete: 'CASCADE' })
-  cardId: number;
+  card_id: number;
 
   @ForeignKey(() => Product)
   @Column({ type: DataType.INTEGER, onDelete: 'CASCADE' })
-  productId: number;
+  product_id: number;
 }

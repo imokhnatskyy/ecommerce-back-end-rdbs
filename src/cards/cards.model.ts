@@ -13,7 +13,7 @@ import { Product } from 'src/products/products.model';
 import { Item } from 'src/items/items.model';
 
 interface CardCreationAttrs {
-  userId: number;
+  user_id: number;
 }
 
 @Table({ tableName: 'cards' })
@@ -29,7 +29,7 @@ export class Card extends Model<Card, CardCreationAttrs> {
 
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER, onDelete: 'CASCADE' })
-  userId: number;
+  user_id: number;
 
   @BelongsTo(() => User)
   user: User;

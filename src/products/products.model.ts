@@ -16,7 +16,7 @@ interface ProductCreationAttrs {
   name: string;
   price: number;
   stock: number;
-  categoryId: number;
+  category_id: number;
 }
 
 @Table({ tableName: 'products' })
@@ -50,7 +50,7 @@ export class Product extends Model<Product, ProductCreationAttrs> {
 
   @ForeignKey(() => Category)
   @Column({ type: DataType.INTEGER, onDelete: 'CASCADE' })
-  categoryId: number;
+  category_id: number;
 
   @BelongsTo(() => Category)
   category: Category;

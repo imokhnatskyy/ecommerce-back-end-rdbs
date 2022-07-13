@@ -9,9 +9,9 @@ export class ItemService {
 
   async createItem(dto: CreateItemDto) {
     const item = await Item.findOne({
-      where: { cardId: dto.cardId, productId: dto.productId },
+      where: { card_id: dto.card_id, product_id: dto.product_id },
     });
-    if (item) {
+    if (item?.id) {
       await item.update({ quantity: dto.quantity });
       return item;
     }

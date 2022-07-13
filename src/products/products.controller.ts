@@ -17,6 +17,13 @@ import { ProductsService } from './products.service';
 export class ProductController {
   constructor(private productService: ProductsService) {}
 
+  @ApiOperation({ summary: 'Get Products list' })
+  @ApiResponse({ status: 200, type: [Product] })
+  @Get()
+  getAll() {
+    return this.productService.getProducts();
+  }
+
   @ApiOperation({ summary: 'Create product' })
   @ApiResponse({ status: 200, type: Product })
   @Post()
@@ -42,15 +49,6 @@ export class ProductController {
   @ApiParam({ name: 'id' })
   getProduct(@Param() param: { id: string }): any {
     return this.productService.getProductById(param.id);
-  }
-
-  @ApiOperation({
-    summary: 'Products list',
-  })
-  @ApiResponse({ status: 200, type: [Product] })
-  @Get('/list')
-  getProductList(): any {
-    return this.productService.getProducts();
   }
 
   @ApiOperation({

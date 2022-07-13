@@ -26,15 +26,15 @@ export class ProductsService {
   }
 
   async getProducts() {
-    const product = await Product.findAll({
-      include: Category,
+    return await this.productRepository.findAll({
+      include: { model: Category },
     });
-    return product;
   }
+
   async getCategoryProducts(id: string) {
     const categoryId = Number(id);
     const product = await Product.findAll({
-      where: { categoryId },
+      where: { category_id: categoryId },
     });
     return product;
   }
@@ -53,7 +53,7 @@ export class ProductsService {
       throw new NotFoundException(`Product ${CreateProductDto.name} not found`);
 
     await product.update(dto);
-    await product.$set('categoryId', dto.categoryId);
+    await product.$set('category_id', dto.category_id);
 
     return product;
   }
