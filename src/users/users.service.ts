@@ -36,7 +36,17 @@ export class UsersService {
   async findUserByEmail(email: string) {
     return await this.userRepository.findOne({
       where: { email },
+      include: Card,
     });
+  }
+  async getUserById(id: string) {
+    const userId = Number(id);
+    const user = await this.userRepository.findByPk(userId, {
+      attributes: [['id', 'userId'], 'email'],
+      include: { model: Card, attributes: ['id'] },
+    });
+    return user;
+    // return { id: user.id, email: user.email, cardId: user.card };
   }
 
   async setPassword(email: string, newPassword: string): Promise<User> {

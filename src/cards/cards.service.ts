@@ -50,9 +50,6 @@ export class CardsService {
         type: sequelize.QueryTypes.SELECT,
       },
     );
-    if (!card.length) {
-      return [];
-    }
     const total_price = card.reduce((acc, el): number => {
       acc += el?.sum;
       return acc;
