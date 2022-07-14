@@ -2,9 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import sequelize from 'sequelize';
 import { Item } from 'src/items/items.model';
-// import { Category } from 'src/categories/categories.model';
-// import { Item } from 'src/items/items.model';
-// import { Product } from 'src/products/products.model';
 import { Card } from './cards.model';
 import { CreateCardDto } from './dto/create-card.dto';
 
@@ -50,9 +47,6 @@ export class CardsService {
         type: sequelize.QueryTypes.SELECT,
       },
     );
-    if (!card.length) {
-      return [];
-    }
     const total_price = card.reduce((acc, el): number => {
       acc += el?.sum;
       return acc;

@@ -29,7 +29,7 @@ export class CategoryController {
   })
   @ApiResponse({ status: 200, type: Category })
   @Get('/:categoryId')
-  @ApiParam({ name: 'categoryId' })
+  @ApiParam({ name: 'id' })
   getProduct(@Param() param: { id: string }): any {
     return this.categoryService.getCategooryById(param.id);
   }
@@ -45,7 +45,7 @@ export class CategoryController {
   }
 
   @ApiOperation({
-    summary: 'update product',
+    summary: 'update category',
   })
   @ApiResponse({ status: 204 })
   @Patch('/:id')
