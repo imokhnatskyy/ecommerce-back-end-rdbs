@@ -21,6 +21,11 @@ import { Card } from './cards/cards.model';
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
+      dialectOptions: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
       host: process.env.POSTGRESS_HOST,
       // port: parseInt(process.env.POSTGRES_PORT),
       // username: process.env.POSTGRES_USER,
