@@ -9,7 +9,6 @@ export class ItemService {
   constructor(@InjectModel(Item) private itemRepository: typeof Item) {}
 
   async createItem(dto: CreateItemDto) {
-    let createdItem: any;
     try {
       const item = await Item.findOne({
         where: { card_id: dto.card_id, product_id: dto.product_id },
@@ -20,25 +19,22 @@ export class ItemService {
       }
       if (product.stock < dto.quantity) {
         if (item?.id) {
-          await item.update({ quantity: product.stock });
-          return item;
+          return await item.update({ quantity: product.stock });
         }
-        createdItem = await Item.create({
+        return await Item.create({
           card_id: dto.card_id,
           product_id: dto.product_id,
           quantity: product.stock,
         });
       }
       if (item?.id) {
-        await item.update({ quantity: dto.quantity });
-        return item;
+        return await item.update({ quantity: dto.quantity });
       }
-      createdItem = await Item.create(dto);
+      return await Item.create(dto);
     } catch (error) {
       console.log(`error`, error);
       throw new HttpException(error, error.code);
     }
-    return createdItem;
   }
 
   async getItemById(id: string) {

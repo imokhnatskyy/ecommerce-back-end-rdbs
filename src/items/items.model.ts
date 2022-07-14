@@ -30,10 +30,10 @@ export class Item extends Model<Item, ItemCreationAttrs> {
   quantity: number;
 
   @ForeignKey(() => Card)
-  @Column({ type: DataType.INTEGER, onDelete: 'CASCADE' })
+  @Column({ type: DataType.INTEGER, onDelete: 'CASCADE', unique: false })
   card_id: number;
 
   @ForeignKey(() => Product)
-  @Column({ type: DataType.INTEGER, onDelete: 'CASCADE' })
+  @Column({ type: DataType.INTEGER, onDelete: 'CASCADE', unique: false })
   product_id: number;
 }
