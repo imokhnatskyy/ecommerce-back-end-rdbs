@@ -27,7 +27,9 @@ export class CategoryService {
 
   async getCategooryById(id: string) {
     const categorytId = Number(id);
-    const category = await this.categoryRepository.findByPk(categorytId);
+    const category = await this.categoryRepository.findByPk(categorytId, {
+      attributes: ['id', 'category'],
+    });
     return category;
   }
 
@@ -51,5 +53,11 @@ export class CategoryService {
       throw new NotFoundException(`Category not found`);
     }
     await category.destroy();
+  }
+
+  async getAllCategory() {
+    return await this.categoryRepository.findAll({
+      attributes: ['id', 'category'],
+    });
   }
 }
