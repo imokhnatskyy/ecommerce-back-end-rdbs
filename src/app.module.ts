@@ -20,7 +20,7 @@ import { Card } from './cards/cards.model';
       envFilePath: `.${process.env.NODE_ENV}.env`,
     }),
     SequelizeModule.forRoot({
-      uri: process.env.DATABASE_URL,
+      // uri: process.env.DATABASE_URL,
       dialect: 'postgres',
       dialectOptions: {
         ssl: {
@@ -28,11 +28,11 @@ import { Card } from './cards/cards.model';
           rejectUnauthorized: false,
         },
       },
-      // host: process.env.DATABASE_HOST,
+      host: process.env.DATABASE_HOST,
       // port: parseInt(process.env.DATABASE_PORT),
-      // username: process.env.DATABASE_USERNAME,
-      // password: process.env.DATABASE_PASSWORD,
-      // database: process.env.DATABASE_NAME,
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       models: [User, Product, Category, Item, Card],
       synchronize: true,
       autoLoadModels: true,
