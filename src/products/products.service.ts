@@ -27,13 +27,15 @@ export class ProductsService {
 
   async getProducts() {
     return await this.productRepository.findAll({
-      include: { model: Category },
+      attributes: ['id', 'name', 'price', 'stock'],
+      include: { model: Category, attributes: ['category', 'id'] },
     });
   }
 
   async getCategoryProducts(id: string) {
     const categoryId = Number(id);
     const product = await Product.findAll({
+      attributes: ['id', 'name', 'price', 'stock'],
       where: { category_id: categoryId },
     });
     return product;
@@ -41,7 +43,9 @@ export class ProductsService {
 
   async getProductById(id: string) {
     const productId = Number(id);
-    const product = await Product.findByPk(productId);
+    const product = await Product.findByPk(productId, {
+      attributes: ['id', 'name', 'price', 'stock'],
+    });
     return product;
   }
 

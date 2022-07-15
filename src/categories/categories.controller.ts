@@ -17,6 +17,13 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
+  @ApiOperation({ summary: 'Get Category list' })
+  @ApiResponse({ status: 200, type: [Category] })
+  @Get()
+  getAll() {
+    return this.categoryService.getAllCategory();
+  }
+
   @ApiOperation({ summary: 'Create category' })
   @ApiResponse({ status: 200, type: Category })
   @Post()
@@ -28,7 +35,7 @@ export class CategoryController {
     summary: 'category by id',
   })
   @ApiResponse({ status: 200, type: Category })
-  @Get('/:categoryId')
+  @Get('/:id')
   @ApiParam({ name: 'id' })
   getProduct(@Param() param: { id: string }): any {
     return this.categoryService.getCategooryById(param.id);
