@@ -24,6 +24,7 @@ import { Card } from './cards/cards.model';
       dialect: 'postgres',
       dialectOptions: {
         ssl: {
+          require: true,
           rejectUnauthorized: false,
         },
       },
